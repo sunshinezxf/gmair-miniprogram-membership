@@ -1,0 +1,12 @@
+<!--pages/integral-center/integral-center.wxml-->
+<text>我的积分记录</text>
+<view>总积分: {{membershipIntegral}}</view>
+<button bindtap='toDepositIntegral'>补录申请</button>
+<text>___________________________________</text>
+<view wx:for="{{getIntegralRecords}}" wx:for-index="idx" wx:for-item="item">
+  <view>{{item.createTime}}</view>
+  <view wx:if="{{item.isAdd}}">+{{item.integralValue}}</view>
+  <view wx:if="{{!item.isAdd}}">-{{item.integralValue}}</view>
+  <view>{{item.description}}</view>
+  <text>___________________________</text>
+</view>

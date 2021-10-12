@@ -1,0 +1,14 @@
+<text>会员中心</text>
+<view>总积分: {{membershipIntegral}}</view>
+<view class='container'>
+  <!-- <view class='line-fix'></view>
+  <view class='tit-background'></view> -->
+  <view>
+    <block wx:for="{{prodList}}" wx:key ="key">
+      <prod item="{{item}}" ></prod>
+    </block>
+  </view>
+  <view wx:if="!prodList.length" class="empty-list">
+    暂无商品
+  </view>
+</view>

@@ -1,0 +1,44 @@
+<!--pages/deposit-integral/deposit-integral.wxml-->
+<view>积分申请</view>
+<view>该补录仅仅适用2021.10月之前的积分</view>
+<form catchsubmit="formSubmit" catchreset="formReset">
+	<view class="page-section">
+		<view class="page-section-title">积分(去了)</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell weui-cell_input">
+				<view class="weui-cell__bd" style="margin: 30rpx 0">
+					<input class="weui-input" name="integral" placeholder="积分" type="number" />
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="page-section">
+		<view class="page-section-title">原因描述</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell weui-cell_input">
+				<view class="weui-cell__bd" style="margin: 30rpx 0">
+					<input class="weui-input" name="description" placeholder="原因描述" maxlength="80" />
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="page-section">
+		<view class="page-section-title">图片</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell weui-cell_input">
+				<view class="weui-cell__bd" style="margin: 30rpx 0">
+					<input class="weui-input" name="description" placeholder="原因描述" maxlength="80" />
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+	<view class="btn-area">
+		<button style="margin: 30rpx 0" type="primary" formType="submit">Submit</button>
+		<button style="margin: 30rpx 0" formType="reset">Reset</button>
+	</view>
+
+</form>
