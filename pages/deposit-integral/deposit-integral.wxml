@@ -1,44 +1,47 @@
-<!--pages/deposit-integral/deposit-integral.wxml-->
-<view>积分申请</view>
-<view>该补录仅仅适用2021.10月之前的积分</view>
-<form catchsubmit="formSubmit" catchreset="formReset">
-	<view class="page-section">
-		<view class="page-section-title">积分(去了)</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell weui-cell_input">
-				<view class="weui-cell__bd" style="margin: 30rpx 0">
-					<input class="weui-input" name="integral" placeholder="积分" type="number" />
-				</view>
-			</view>
-		</view>
+<view>
+
+	
+	<view class="uploadImage-title">
+			<text>请上传待补录商品订单照片（或截图）：</text>
+	</view>
+	<view class = "uploadImage">
+		<van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" deletable="{{ true }}" bind:before-read="beforeRead" bind:delete="deletePhone" max-size="10485760" bind:oversize="oversize" max-count="5"/>
+	</view>
+	<view class="divider">
+		<van-divider/>
+	</view>
+	<view class = "remark">
+		<van-field
+			value=""
+			label="设备型号"
+			type="textarea"
+			placeholder="积分补录备注"
+			autosize
+			border="{{ false }}"	
+		/>
 	</view>
 
-	<view class="page-section">
-		<view class="page-section-title">原因描述</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell weui-cell_input">
-				<view class="weui-cell__bd" style="margin: 30rpx 0">
-					<input class="weui-input" name="description" placeholder="原因描述" maxlength="80" />
-				</view>
-			</view>
-		</view>
+	<view class="divider">
+		<van-divider/>
 	</view>
-
-	<view class="page-section">
-		<view class="page-section-title">图片</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell weui-cell_input">
-				<view class="weui-cell__bd" style="margin: 30rpx 0">
-					<input class="weui-input" name="description" placeholder="原因描述" maxlength="80" />
-				</view>
-			</view>
-		</view>
+	<view class = "remark">
+		<van-field
+			value=""
+			label="备注"
+			type="textarea"
+			placeholder="积分补录备注"
+			autosize
+			border="{{ false }}"
+			
+		/>
 	</view>
 
 
-	<view class="btn-area">
-		<button style="margin: 30rpx 0" type="primary" formType="submit">Submit</button>
-		<button style="margin: 30rpx 0" formType="reset">Reset</button>
-	</view>
 
-</form>
+	<view class="button">
+		
+			<van-button type="primary" size="large">提交</van-button>
+	
+	
+	</view>
+</view>

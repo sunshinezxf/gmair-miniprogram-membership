@@ -1,14 +1,16 @@
-import { basic } from '../mixins/basic';
-import { observe } from '../mixins/observer/index';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VantComponent = void 0;
+var basic_1 = require("../mixins/basic");
 function mapKeys(source, target, map) {
-    Object.keys(map).forEach(key => {
+    Object.keys(map).forEach(function (key) {
         if (source[key]) {
             target[map[key]] = source[key];
         }
     });
 }
-function VantComponent(vantOptions = {}) {
-    const options = {};
+function VantComponent(vantOptions) {
+    var options = {};
     mapKeys(vantOptions, options, {
         data: 'data',
         props: 'properties',
@@ -17,22 +19,21 @@ function VantComponent(vantOptions = {}) {
         beforeCreate: 'created',
         created: 'attached',
         mounted: 'ready',
-        relations: 'relations',
         destroyed: 'detached',
-        classes: 'externalClasses'
+        classes: 'externalClasses',
     });
-    const { relation } = vantOptions;
-    if (relation) {
-        options.relations = Object.assign(options.relations || {}, {
-            [`../${relation.name}/index`]: relation
-        });
-    }
     // add default externalClasses
     options.externalClasses = options.externalClasses || [];
     options.externalClasses.push('custom-class');
     // add default behaviors
     options.behaviors = options.behaviors || [];
-    options.behaviors.push(basic);
+    options.behaviors.push(basic_1.basic);
+    // add relations
+    var relation = vantOptions.relation;
+    if (relation) {
+        options.relations = relation.relations;
+        options.behaviors.push(relation.mixin);
+    }
     // map field to form-field behavior
     if (vantOptions.field) {
         options.behaviors.push('wx://form-field');
@@ -40,9 +41,8 @@ function VantComponent(vantOptions = {}) {
     // add default options
     options.options = {
         multipleSlots: true,
-        addGlobalClass: true
+        addGlobalClass: true,
     };
-    observe(vantOptions, options);
     Component(options);
 }
-export { VantComponent };
+exports.VantComponent = VantComponent;

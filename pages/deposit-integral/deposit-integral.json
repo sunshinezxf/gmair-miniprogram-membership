@@ -1,3 +1,14 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-field": "/vant/field/index",
+    "van-cell": "/vant/cell/index",
+    "van-cell-group": "/vant/cell-group/index",
+    "van-uploader": "/vant/uploader/index",
+    "van-divider": "/vant/divider/index",
+    "van-button": "/vant/button/index"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarTitleText": "积分补录",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#fafafa"
 }

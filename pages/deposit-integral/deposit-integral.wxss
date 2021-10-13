@@ -1,1 +1,40 @@
 /* pages/deposit-integral/deposit-integral.wxss */
+
+page {
+  background-color: white;
+  padding-bottom: 60rpx;
+}
+.uploadImage{
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+.remark{
+  margin-top: 20rpx;
+ 
+}
+.uploadImage-title{
+  font-size: 30rpx;
+  margin-top: 50rpx;
+  margin-left: 20rpx;
+  text-align: left;
+  color: rgb(46, 45, 45);
+}
+.divider{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.button{
+  /* margin-top: 140rpx; */
+  /* margin-left: 20rpx;
+  margin-right: 50rpx; */
+  position:fixed;
+  bottom:300rpx;
+  display:flex;
+  width:100%;
+  justify-content:center;
+
+
+}
+.button van-button{
+  width:94%;
+}

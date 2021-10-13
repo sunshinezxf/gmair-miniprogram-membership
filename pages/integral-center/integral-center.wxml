@@ -1,12 +1,44 @@
 <!--pages/integral-center/integral-center.wxml-->
-<text>我的积分记录</text>
-<view>总积分: {{membershipIntegral}}</view>
-<button bindtap='toDepositIntegral'>补录申请</button>
-<text>___________________________________</text>
-<view wx:for="{{getIntegralRecords}}" wx:for-index="idx" wx:for-item="item">
-  <view>{{item.createTime}}</view>
-  <view wx:if="{{item.isAdd}}">+{{item.integralValue}}</view>
-  <view wx:if="{{!item.isAdd}}">-{{item.integralValue}}</view>
-  <view>{{item.description}}</view>
-  <text>___________________________</text>
+<view class='container'>
+	<!-- 用户信息 -->
+	<view class='userinfo'>
+		<view class='userinfo-name'>
+			<text>我的积分</text>
+		</view>
+		<view class='userinfo-integral'>
+			<text>{{membershipIntegral}}</text>
+			<view class='userinfo-button'>
+				<van-button round bind:click='toDepositIntegral'><text style="color:#fd5639;">补录申请</text></van-button>
+			</view>
+
+		</view>
+	</view>
+
+	<view class='integral-list'>
+		<view wx:for="{{getIntegralRecords}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
+			<van-divider wx-if="{{idx!=0}}"/>
+			<view class="integral-list-item-up">
+			
+				<view>
+					<view class='item-desc'>
+						<text>{{item.description}}</text>
+					</view>
+					<view class='item-date'>
+						<text>{{item.createTime}}</text>
+					</view>
+				</view>
+
+				<view class='item-num' wx:if="{{item.isAdd}}">
+					<text>+{{item.integralValue}}</text>
+				</view>
+
+				<view class='item-num' wx:if="{{!item.isAdd}}">
+					<text>-{{item.integralValue}}</text>
+				</view>
+				
+			</view>
+
+		</view>
+
+	</view>
 </view>

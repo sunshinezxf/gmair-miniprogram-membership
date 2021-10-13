@@ -1,93 +1,121 @@
-import { isObj } from '../common/utils';
-const getClassNames = (name) => ({
-    enter: `van-${name}-enter van-${name}-enter-active enter-class enter-active-class`,
-    'enter-to': `van-${name}-enter-to van-${name}-enter-active enter-to-class enter-active-class`,
-    leave: `van-${name}-leave van-${name}-leave-active leave-class leave-active-class`,
-    'leave-to': `van-${name}-leave-to van-${name}-leave-active leave-to-class leave-active-class`
-});
-const nextTick = () => new Promise(resolve => setTimeout(resolve, 1000 / 20));
-export const transition = function (showDefaultValue) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.transition = void 0;
+// @ts-nocheck
+var utils_1 = require("../common/utils");
+var validator_1 = require("../common/validator");
+var getClassNames = function (name) { return ({
+    enter: "van-" + name + "-enter van-" + name + "-enter-active enter-class enter-active-class",
+    'enter-to': "van-" + name + "-enter-to van-" + name + "-enter-active enter-to-class enter-active-class",
+    leave: "van-" + name + "-leave van-" + name + "-leave-active leave-class leave-active-class",
+    'leave-to': "van-" + name + "-leave-to van-" + name + "-leave-active leave-to-class leave-active-class",
+}); };
+function transition(showDefaultValue) {
     return Behavior({
         properties: {
             customStyle: String,
+            // @ts-ignore
             show: {
                 type: Boolean,
                 value: showDefaultValue,
-                observer: 'observeShow'
+                observer: 'observeShow',
             },
+            // @ts-ignore
             duration: {
-                type: [Number, Object],
+                type: null,
                 value: 300,
-                observer: 'observeDuration'
+                observer: 'observeDuration',
             },
             name: {
                 type: String,
                 value: 'fade',
-                observer: 'updateClasses'
-            }
+            },
         },
         data: {
             type: '',
             inited: false,
             display: false,
-            classNames: getClassNames('fade')
         },
-        attached() {
-            if (this.data.show) {
-                this.show();
+        ready: function () {
+            if (this.data.show === true) {
+                this.observeShow(true, false);
             }
         },
         methods: {
-            observeShow(value) {
-                if (value) {
-                    this.show();
+            observeShow: function (value, old) {
+                if (value === old) {
+                    return;
                 }
-                else {
-                    this.leave();
-                }
+                value ? this.enter() : this.leave();
             },
-            updateClasses(name) {
-                this.set({
-                    classNames: getClassNames(name)
+            enter: function () {
+                var _this = this;
+                var _a = this.data, duration = _a.duration, name = _a.name;
+                var classNames = getClassNames(name);
+                var currentDuration = (0, validator_1.isObj)(duration) ? duration.enter : duration;
+                this.status = 'enter';
+                this.$emit('before-enter');
+                (0, utils_1.requestAnimationFrame)(function () {
+                    if (_this.status !== 'enter') {
+                        return;
+                    }
+                    _this.$emit('enter');
+                    _this.setData({
+                        inited: true,
+                        display: true,
+                        classes: classNames.enter,
+                        currentDuration: currentDuration,
+                    });
+                    (0, utils_1.requestAnimationFrame)(function () {
+                        if (_this.status !== 'enter') {
+                            return;
+                        }
+                        _this.transitionEnded = false;
+                        _this.setData({ classes: classNames['enter-to'] });
+                    });
                 });
             },
-            show() {
-                const { classNames, duration } = this.data;
-                const currentDuration = isObj(duration) ? duration.leave : duration;
-                Promise.resolve()
-                    .then(nextTick)
-                    .then(() => this.set({
-                    inited: true,
-                    display: true,
-                    classes: classNames.enter,
-                    currentDuration
-                }))
-                    .then(nextTick)
-                    .then(() => this.set({
-                    classes: classNames['enter-to']
-                }));
-            },
-            leave() {
-                const { classNames, duration } = this.data;
-                const currentDuration = isObj(duration) ? duration.leave : duration;
-                Promise.resolve()
-                    .then(nextTick)
-                    .then(() => this.set({
-                    classes: classNames.leave,
-                    currentDuration
-                }))
-                    .then(() => setTimeout(() => this.onTransitionEnd(), currentDuration))
-                    .then(nextTick)
-                    .then(() => this.set({
-                    classes: classNames['leave-to']
-                }));
-            },
-            onTransitionEnd() {
-                if (!this.data.show) {
-                    this.set({ display: false });
-                    this.$emit('transitionEnd');
+            leave: function () {
+                var _this = this;
+                if (!this.data.display) {
+                    return;
                 }
-            }
-        }
+                var _a = this.data, duration = _a.duration, name = _a.name;
+                var classNames = getClassNames(name);
+                var currentDuration = (0, validator_1.isObj)(duration) ? duration.leave : duration;
+                this.status = 'leave';
+                this.$emit('before-leave');
+                (0, utils_1.requestAnimationFrame)(function () {
+                    if (_this.status !== 'leave') {
+                        return;
+                    }
+                    _this.$emit('leave');
+                    _this.setData({
+                        classes: classNames.leave,
+                        currentDuration: currentDuration,
+                    });
+                    (0, utils_1.requestAnimationFrame)(function () {
+                        if (_this.status !== 'leave') {
+                            return;
+                        }
+                        _this.transitionEnded = false;
+                        setTimeout(function () { return _this.onTransitionEnd(); }, currentDuration);
+                        _this.setData({ classes: classNames['leave-to'] });
+                    });
+                });
+            },
+            onTransitionEnd: function () {
+                if (this.transitionEnded) {
+                    return;
+                }
+                this.transitionEnded = true;
+                this.$emit("after-" + this.status);
+                var _a = this.data, show = _a.show, display = _a.display;
+                if (!show && display) {
+                    this.setData({ display: false });
+                }
+            },
+        },
     });
-};
+}
+exports.transition = transition;
