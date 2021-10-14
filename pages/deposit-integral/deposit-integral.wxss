@@ -12,6 +12,15 @@ page {
   margin-top: 20rpx;
  
 }
+.deviceModel{
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .uploadImage-title{
   font-size: 30rpx;
   margin-top: 50rpx;

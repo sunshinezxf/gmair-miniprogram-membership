@@ -10,15 +10,16 @@
 	<view class="divider">
 		<van-divider/>
 	</view>
-	<view class = "remark">
+	<view class = "deviceModel">
 		<van-field
-			value=""
+			model:value="{{ deviceModel }}"
 			label="设备型号"
-			type="textarea"
-			placeholder="积分补录备注"
+			placeholder="手动输入或扫码获取"
 			autosize
 			border="{{ false }}"	
+			bind:change="onDeviceModelChange"
 		/>
+		<van-button bind:click="scanCall" icon="scan">扫码</van-button>
 	</view>
 
 	<view class="divider">
@@ -26,22 +27,19 @@
 	</view>
 	<view class = "remark">
 		<van-field
-			value=""
+			model:value="{{ description }}"
 			label="备注"
 			type="textarea"
 			placeholder="积分补录备注"
 			autosize
 			border="{{ false }}"
-			
+			bind:change="onRemarkChange"
 		/>
 	</view>
 
 
 
-	<view class="button">
-		
-			<van-button type="primary" size="large">提交</van-button>
-	
-	
+	<view class="button">	
+			<van-button type="primary" size="large" bind:click="dataSubmit">提交</van-button>
 	</view>
 </view>
