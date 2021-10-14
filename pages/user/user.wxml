@@ -59,20 +59,21 @@
         <view class="num">{{membershipIntegral}}</view>
         <view class="tit">我的积分</view>
       </view>
-      <view class="col-item">
+      
+      <!-- <view class="col-item">
         <view class="num">xx</view>
         <view class="tit">我的足迹</view>
-      </view>
+      </view> -->
     </view>
 
     <view class='my-menu'>
-      <view class='memu-item' bindtap='toMembershipCenter'>
+      <!-- <view class='memu-item' bindtap='toMembershipCenter'>
         <view class="i-name">
           <image src='../../images/icon/promotion.png'></image>
           <text>会员中心</text>
         </view>
         <view class='arrowhead'></view>
-      </view>
+      </view> -->
       <view class='memu-item' bindtap='toIntegralCenter'>
         <view class="i-name">
           <image src='../../images/icon/getCoupon.png'></image>
@@ -80,13 +81,13 @@
         </view>
         <view class='arrowhead'></view>
       </view>
-      <view class='memu-item' bindtap='toMyCouponPage'>
+      <!-- <view class='memu-item' bindtap='toMyCouponPage'>
         <view class="i-name">
           <image src='../../images/icon/myCoupon.png'></image>
           <text>我的优惠券</text>
         </view>
         <view class='arrowhead'></view>
-      </view>
+      </view> -->
       <view class='memu-item' bindtap='toAddressList'>
         <view class="i-name">
           <image src='../../images/icon/myAddr.png'></image>
