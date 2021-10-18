@@ -1,5 +1,6 @@
 // pages/deposit-integral/deposit-integral.js
 var http = require("../../utils/http.js");
+var config = require("../../utils/config.js");
 Page({
 
   /**
@@ -7,6 +8,7 @@ Page({
    */
   data: {
     fileList: [],
+    fileUploadList:[],
     deviceModel: '',
     description: ''
   },
@@ -30,10 +32,14 @@ Page({
     } = event.detail;
     console.log(file);
     var that = this;
+    var imageUploadUrl = config.imageUploadUrl;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     wx.uploadFile({
-      url: 'http://192.168.50.217:9017/resource/image/upload', // 仅为示例，非真实的接口地址
+      url: imageUploadUrl, // 非真实的接口地址
       filePath: file.url,
+      header: {
+        "Content-Type": "multipart/form-data"
+      },
       name: 'image',
       success(res) {
         console.log("JSON.parse(res.data).data.fileUrl",JSON.parse(res.data).data.fileUrl);
@@ -41,12 +47,20 @@ Page({
         const {
           fileList = []
         } = that.data;
+        const {
+          fileUploadList = []
+        } = that.data;
+
         fileList.push({
-          url: JSON.parse(res.data).data.fileUrl,
+          url: file.url,
           deletable: true
         });
+        fileUploadList.push({
+          url: JSON.parse(res.data).data.fileUrl
+        });
         that.setData({
-          fileList
+          fileList,
+          fileUploadList
         });
       },
     });
@@ -111,15 +125,16 @@ Page({
         });
         that.setData({
           fileList: [],
-          deviceModel: '',
-          description: ''
+          fileUploadList: [],
+          deviceModel:'',
+          description:''
         });
       }
     };
     http.request(params);
   },
   getPictures:function(){
-    let pictureList = this.data.fileList;
+    let pictureList = this.data.fileUploadList;
     var pictures = '';
     for(let i=0,len=pictureList.length;i<len;i++){
       pictures += pictureList[i].url;

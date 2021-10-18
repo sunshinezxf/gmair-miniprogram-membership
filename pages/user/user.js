@@ -33,6 +33,20 @@ Page({
    */
   onShow: function() {
 
+    // 检查是否已经获取电话号
+    let userPhone = wx.getStorageSync('userPhone');
+    if(userPhone==null||typeof userPhone == "undefined"||userPhone == ""){
+      wx.navigateTo({
+        url: '/pages/get-phone/get-phone'
+      })
+      return;
+    }
+    // 校验是否已经绑定
+    let setConsumerIdFlag = wx.getStorageSync('setConsumerIdFlag');
+    if(setConsumerIdFlag==null||typeof setConsumerIdFlag == "undefined"||setConsumerIdFlag == ""||setConsumerIdFlag==false){
+      http.setConsumerId();
+    }
+
     //加载订单数字
     var ths = this;
     // var status = ths.data.status
@@ -95,11 +109,33 @@ Page({
   },
 
   toIntegralCenter: function() {
+    let validFlag = wx.getStorageSync('membershipFlag');
+    if(validFlag==null||typeof validFlag == "undefined"||validFlag == ""){
+      wx.showToast({
+        title: '请先加入会员',
+        icon:"none",
+        duration:2000
+      });
+      return;
+    }
     wx.navigateTo({
       url: '/pages/integral-center/integral-center?membershipIntegral='+this.data.membershipIntegral
     })
   },
-
+  toIntegralSupplementary:function() {
+    let validFlag = wx.getStorageSync('membershipFlag');
+    if(validFlag==null||typeof validFlag == "undefined"||validFlag == ""||validFlag==false){
+      wx.showToast({
+        title: '请先加入会员',
+        icon:"none",
+        duration:2000
+      });
+      return;
+    }
+    wx.navigateTo({
+      url: '/pages/deposit-integral/deposit-integral'
+    })
+  },
   toMyCouponPage: function() {
     wx.showToast({
       icon: "none",

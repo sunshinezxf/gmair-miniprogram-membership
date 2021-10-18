@@ -137,6 +137,10 @@ swiper.pic-swiper .banner {
   left: 20rpx;
   top: 27rpx;
   margin-right: 8rpx;
+  
+}
+.message-play .hornIcon{
+  margin-bottom: 5rpx;
 }
 
 .message-play .swiper-cont {

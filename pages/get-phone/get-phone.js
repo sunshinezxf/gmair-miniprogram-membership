@@ -9,19 +9,29 @@ Page({
 
   },
   getPhoneNumber:function(res){
-    http.request({
+    var that = this;
+    var params ={
       url: "/p/user/setUserPhone",
       method: "PUT",
       data: {
         encryptedData: res.detail.encryptedData,
         iv: res.detail.iv
+      },
+      callBack: function (res) {
+        console.log("getPhoneNumber",res);
+        wx.setStorageSync('userPhone',res);
+        http.setConsumerId();
       }
-    });
-
-    wx.navigateBack({
-      delta: 2
-    });
+    };
+    http.request(params);
+    setTimeout(function() {
+      wx.navigateBack({
+        delta: 2
+      });
+    }, 500);
+    
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */

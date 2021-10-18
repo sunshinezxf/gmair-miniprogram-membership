@@ -1,6 +1,9 @@
 {
+  "usingComponents": {
+    "van-icon": "/vant/icon/index"
+  },
   "backgroundTextStyle": "dark",
   "navigationBarTextStyle": "black",
   "enablePullDownRefresh": true,
-  "navigationBarTitleText": "果麦商城"
+  "navigationBarTitleText": "果麦会员中心"
 }

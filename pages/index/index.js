@@ -58,7 +58,26 @@ Page({
       url: '/pages/search-page/search-page',
     })
   },
-
+  toMembership:function(){
+    
+    wx.switchTab({
+      url: "/pages/user/user",
+    })
+  },
+  toIntegral:function(){
+    let validFlag = wx.getStorageSync('membershipFlag');
+    if(validFlag==null||typeof validFlag == "undefined"||validFlag == ""||validFlag==false){
+      wx.showToast({
+        title: '请先加入会员',
+        icon:"none",
+        duration:2000
+      });
+      return;
+    }
+    wx.navigateTo({
+      url: '/pages/deposit-integral/deposit-integral',
+    })
+  },
   //跳转商品活动页面
   toClassifyPage: function(e) {
     var url = '/pages/prod-classify/prod-classify?sts=' + e.currentTarget.dataset.sts;

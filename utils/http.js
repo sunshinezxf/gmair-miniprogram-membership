@@ -157,9 +157,21 @@ function getCartCount() {
   };
   request(params);
 }
-
+// 用户绑定
+function setConsumerId(){
+  var params ={
+    url: "/p/user/setConsumerId",
+    method: "PUT",
+    callBack: function (res) {
+      console.log(res);
+      wx.setStorageSync('setConsumerIdFlag',true);// 成功设置,标为true
+    }
+  };
+  request(params);
+}
 
 exports.getToken = getToken;
 exports.request = request;
 exports.getCartCount = getCartCount;
 exports.updateUserInfo = updateUserInfo;
+exports.setConsumerId = setConsumerId;
