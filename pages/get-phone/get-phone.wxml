@@ -1,7 +1,7 @@
 <!--pages/get-phone/get-phone.wxml-->
 
-<image src='http://img-test.gz-yami.com/mini/logo.jpg' class='c-logo'></image>
-<view class="title">果麦商城</view>
+<image src='../../images/icon/logo.jpg' class='c-logo'></image>
+<view class="title">果麦会员中心</view>
 <view class="msg">申请获得你的手机号</view>
 <button color="#eb2444"  open-type="getPhoneNumber" lang = "zh_CN" bindgetphonenumber = "getPhoneNumber" class=''>微信授权</button>
 

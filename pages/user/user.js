@@ -168,6 +168,7 @@ Page({
           duration: 2000
         });
         wx.setStorageSync('membershipFlag',true);
+        ths.showMembershipIntegral();
       }
     };
     http.request(params);
