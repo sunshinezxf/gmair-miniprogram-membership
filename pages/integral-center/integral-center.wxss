@@ -11,7 +11,7 @@ page {
   position: relative;
   width: 100%;
   /* background: #ff6347; */
-  background: -webkit-linear-gradient(top,#ff4500,#fd5639,#f87141);
+  background: -webkit-linear-gradient(top,#6495ED	,#00BFFF,#87CEFA);
   text-align: center;
   padding: 30rpx 0;
   height: 200rpx;

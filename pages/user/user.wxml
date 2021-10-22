@@ -95,13 +95,13 @@
         </view>
         <view class='arrowhead'></view>
       </view> -->
-      <view class='memu-item' bindtap='toAddressList'>
+      <!-- <view class='memu-item' bindtap='toAddressList'>
         <view class="i-name">
           <image src='../../images/icon/myAddr.png'></image>
           <text>收货地址</text>
         </view>
         <view class='arrowhead'></view>
-      </view>
+      </view> -->
     </view>
     <!--end 列表项 -->
   </view>

@@ -42,7 +42,16 @@ Page({
       },
       name: 'image',
       success(res) {
+       
+        if(res.statusCode==500){
+          wx.showToast({
+            title: '传入的图片大小超出限制',
+            icon:"none",
+            duration:2000
+          })
+        }
         console.log("JSON.parse(res.data).data.fileUrl",JSON.parse(res.data).data.fileUrl);
+        
         // 上传完成需要更新 fileList
         const {
           fileList = []

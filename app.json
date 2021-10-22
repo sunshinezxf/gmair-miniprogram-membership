@@ -4,8 +4,7 @@
     "pages/user/user", 
    
     "pages/login/login",
-    "pages/delivery-address/delivery-address",
-    "pages/editAddress/editAddress",
+  
     "pages/recent-news/recent-news",
     "pages/news-detail/news-detail",
     "pages/integral-center/integral-center",

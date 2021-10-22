@@ -8,7 +8,7 @@
 		<view class='userinfo-integral'>
 			<text>{{membershipIntegral}}</text>
 			<view class='userinfo-button'>
-				<van-button round bind:click='toDepositIntegral'><text style="color:#fd5639;">补录申请</text></van-button>
+				<van-button round bind:click='toDepositIntegral'><text style="color:#6495ED;">补录申请</text></van-button>
 			</view>
 
 		</view>
