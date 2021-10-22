@@ -28,7 +28,7 @@ Page({
       var that = this;
       wx.showLoading();
       var params = {
-        url: "/p/integral/getIntegralRecords",
+        url: "/integral/getIntegralRecords",
         method: "POST",
         data: {},
         callBack: function(res) {

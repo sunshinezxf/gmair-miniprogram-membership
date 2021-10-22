@@ -80,7 +80,7 @@ Page({
   getCollection() {
     wx.showLoading();
     var params = {
-      url: "/p/user/collection/isCollection",
+      url: "/user/collection/isCollection",
       method: "GET",
       data: {
         prodId: this.data.prodId
@@ -102,7 +102,7 @@ Page({
     wx.showLoading();
 
     var params = {
-      url: "/p/user/collection/addOrCancel",
+      url: "/user/collection/addOrCancel",
       method: "POST",
       data: this.data.prodId,
       callBack: (res) => {
@@ -442,7 +442,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/shopCart/changeItem",
+      url: "/shopCart/changeItem",
       method: "POST",
       data: {
         basketId: 0,
@@ -527,7 +527,7 @@ Page({
       return;
     }
     http.request({
-      url: "/p/myCoupon/listCouponIds",
+      url: "/myCoupon/listCouponIds",
       method: "GET",
       data: {},
       callBack: (couponIds) => {

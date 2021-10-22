@@ -32,7 +32,7 @@ Page({
     if (options.addrId) {
       wx.showLoading();
       var params = {
-        url: "/p/address/addrInfo/" + options.addrId,
+        url: "/address/addrInfo/" + options.addrId,
         method: "GET",
         data: {},
         callBack: res => {
@@ -63,7 +63,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/p/area/listByPid",
+      url: "/area/listByPid",
       method: "GET",
       data: {
         pid: 0
@@ -197,7 +197,7 @@ Page({
   getCityArray: function (provinceId, cityId, areaId) {
     var ths = this;
     var params = {
-      url: "/p/area/listByPid",
+      url: "/area/listByPid",
       method: "GET",
       data: {
         pid: provinceId
@@ -229,7 +229,7 @@ Page({
   getAreaArray: function (cityId, areaId) {
     var ths = this;
     var params = {
-      url: "/p/area/listByPid",
+      url: "/area/listByPid",
       method: "GET",
       data: {
         pid: cityId
@@ -325,10 +325,10 @@ Page({
     }
 
     wx.showLoading();
-    var url = "/p/address/addAddr";
+    var url = "/address/addAddr";
     var method = "POST";
     if (ths.data.addrId != 0) {
-      url = "/p/address/updateAddr";
+      url = "/address/updateAddr";
       method = "PUT";
     }
     //添加或修改地址
@@ -390,7 +390,7 @@ Page({
         
           wx.showLoading();
           var params = {
-            url: "/p/address/deleteAddr/" + addrId,
+            url: "/address/deleteAddr/" + addrId,
             method: "DELETE",
             data: {},
             callBack: function (res) {

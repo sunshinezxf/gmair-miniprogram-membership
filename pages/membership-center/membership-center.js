@@ -30,7 +30,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/p/membership/center/listProds",
+      url: "/membership/center/listProds",
       method: "GET",
       data: {
         current: ths.data.current,

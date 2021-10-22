@@ -24,8 +24,8 @@ Page({
     //加载公告详情
     
     var params = {
-      // `/shop/notice/info/${options.id}`
-      url: '/shop/notice/info/' + options.id,
+      
+      url: '/notice/info/' + options.id,
       method: "GET",
       // data: {
       //   id: id,

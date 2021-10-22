@@ -44,7 +44,7 @@ Page({
     wx.showLoading();
     //加载订单详情
     var params = {
-      url: "/p/myOrder/orderDetail",
+      url: "/myOrder/orderDetail",
       method: "GET",
       data: {
         orderNumber: orderNum

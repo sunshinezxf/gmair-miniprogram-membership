@@ -138,7 +138,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/p/user/collection/prods",
+      url: "/user/collection/prods",
       method: "GET",
       data: {
         current: ths.data.current,

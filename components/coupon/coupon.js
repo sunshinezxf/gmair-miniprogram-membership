@@ -30,7 +30,7 @@ Component({
     receiveCoupon() {
       var couponId = this.data.item.couponId;
       http.request({
-        url: "/p/myCoupon/receive",
+        url: "/myCoupon/receive",
         method: "POST",
         data: couponId,
         callBack: () => {

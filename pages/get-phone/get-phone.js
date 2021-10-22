@@ -11,7 +11,7 @@ Page({
   getPhoneNumber:function(res){
     var that = this;
     var params ={
-      url: "/p/user/setUserPhone",
+      url: "/user/setUserPhone",
       method: "PUT",
       data: {
         encryptedData: res.detail.encryptedData,

@@ -121,7 +121,7 @@ Page({
   getIndexImgs() {
     //加载轮播图
     var params = {
-      url: "/indexImgs",
+      url: "/indexImg/get",
       method: "GET",
       data: {},
       callBack: (res) => {
@@ -137,7 +137,7 @@ Page({
   getNoticeList() {
     // 加载公告
     var params = {
-      url: "/shop/notice/topNoticeList",
+      url: "/notice/topNoticeList",
       method: "GET",
       data: {},
       callBack: (res) => {

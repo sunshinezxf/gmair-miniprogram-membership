@@ -120,7 +120,7 @@ function updateUserInfo() {
       var userInfo = JSON.parse(res.rawData)
       console.log("用户信息",userInfo);
       request({
-        url: "/p/user/setUserInfo",
+        url: "/user/setUserInfo",
         method: "PUT",
         data: {
           avatarUrl: userInfo.avatarUrl,
@@ -135,7 +135,7 @@ function updateUserInfo() {
 //获取购物车商品数量
 function getCartCount() {
   var params = {
-    url: "/p/shopCart/prodCount",
+    url: "/shopCart/prodCount",
     method: "GET",
     data: {},
     callBack: function(res) {
@@ -160,7 +160,7 @@ function getCartCount() {
 // 用户绑定
 function setConsumerId(){
   var params ={
-    url: "/p/user/setConsumerId",
+    url: "/user/setConsumerId",
     method: "PUT",
     callBack: function (res) {
       console.log(res);

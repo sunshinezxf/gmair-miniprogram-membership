@@ -125,7 +125,7 @@ Page({
     var that = this;
     wx.showLoading();
     var params = {
-      url: "/p/integral/supplementaryIntegral",
+      url: "/integral/supplementaryIntegral",
       method: "POST",
       data: {
         pictures: that.getPictures(),

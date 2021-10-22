@@ -36,7 +36,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/p/address/defaultAddr/" + addrId,
+      url: "/address/defaultAddr/" + addrId,
       method: "PUT",
       data: {
         addrId:addrId
@@ -56,7 +56,7 @@ Page({
 
 
       var params = {
-        url: "/p/address/list",
+        url: "/address/list",
         method: "GET",
         data: {},
         callBack: function (res) {

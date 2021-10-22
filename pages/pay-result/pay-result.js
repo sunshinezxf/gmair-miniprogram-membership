@@ -33,7 +33,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/order/pay",
+      url: "/order/pay",
       method: "POST",
       data: {
         payType: 1,

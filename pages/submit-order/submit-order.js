@@ -49,7 +49,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/order/confirm",
+      url: "/order/confirm",
       method: "POST",
       data: {
         addrId: addrId,
@@ -156,7 +156,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/order/submit",
+      url: "/order/submit",
       method: "POST",
       data: {
         orderShopParam: [{
@@ -180,7 +180,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/order/pay",
+      url: "/order/pay",
       method: "POST",
       data: {
         payType: 1,

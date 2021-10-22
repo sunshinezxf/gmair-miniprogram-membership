@@ -35,7 +35,7 @@ Page({
     wx.showLoading();
     //加载订单列表
     var params = {
-      url: "/p/myOrder/myOrder",
+      url: "/myOrder/myOrder",
       method: "GET",
       data: {
         current: current,
@@ -155,7 +155,7 @@ Page({
           });
 
           var params = {
-            url: "/p/myOrder/cancel/" + ordernum,
+            url: "/myOrder/cancel/" + ordernum,
             method: "PUT",
             data: {},
             callBack: function(res) {
@@ -181,7 +181,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/order/pay",
+      url: "/order/pay",
       method: "POST",
       data: {
         payType: 1,
@@ -239,7 +239,7 @@ Page({
           });
 
           var params = {
-            url: "/p/myOrder/receipt/" + e.currentTarget.dataset.ordernum,
+            url: "/myOrder/receipt/" + e.currentTarget.dataset.ordernum,
             method: "PUT",
             data: {},
             callBack: function(res) {
@@ -267,7 +267,7 @@ Page({
           var ordernum = e.currentTarget.dataset.ordernum;
           wx.showLoading();
           var params = {
-            url: "/p/myOrder/" + ordernum,
+            url: "/myOrder/" + ordernum,
             method: "DELETE",
             data: {},
             callBack: function(res) {

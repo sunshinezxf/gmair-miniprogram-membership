@@ -53,7 +53,7 @@ Page({
     // var status = ths.data.status
     wx.showLoading();
     var params = {
-      url: "/p/myOrder/orderCount",
+      url: "/myOrder/orderCount",
       method: "GET",
       data: {},
       callBack: function(res) {
@@ -155,7 +155,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/p/membership/joinMemebership",
+      url: "/membership/joinMemebership",
       method: "POST",
       data: {},
       callBack: function(res) {
@@ -188,7 +188,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/p/user/collection/count",
+      url: "/user/collection/count",
       method: "GET",
       data: {},
       callBack: function(res) {
@@ -222,7 +222,7 @@ Page({
    
     wx.showLoading();
     var params = {
-      url: "/p/membership/isMembership",
+      url: "/membership/isMembership",
       method: "POST",
       data: {},
       callBack: function(res) {
@@ -246,7 +246,7 @@ Page({
     console.log("showMembershipIntegral:function");
     wx.showLoading();
     var params = {
-      url: "/p/integral/getIntegral",
+      url: "/integral/getIntegral",
       method: "POST",
       data: {},
       callBack: function(res) {

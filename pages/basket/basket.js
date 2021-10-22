@@ -46,7 +46,7 @@ Page({
     wx.showLoading(); //加载购物车
 
     var params = {
-      url: "/p/shopCart/info",
+      url: "/shopCart/info",
       method: "POST",
       data: {},
       callBack: res => {
@@ -186,7 +186,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/p/shopCart/totalPay",
+      url: "/shopCart/totalPay",
       method: "POST",
       data: shopCartIds,
       callBack: function (res) {
@@ -240,7 +240,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/shopCart/changeItem",
+      url: "/shopCart/changeItem",
       method: "POST",
       data: {
         count: prodCount,
@@ -296,7 +296,7 @@ Page({
               mask: true
             });
             var params = {
-              url: "/p/shopCart/deleteItem",
+              url: "/shopCart/deleteItem",
               method: "DELETE",
               data: basketIds,
               callBack: function (res) {

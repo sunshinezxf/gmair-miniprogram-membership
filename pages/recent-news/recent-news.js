@@ -33,7 +33,7 @@ Page({
     var ths = this;
     //加载公告
     var params = {
-      url: "/shop/notice/noticeList",
+      url: "/notice/noticeList",
       method: "GET",
       data: {},
       callBack: function (res) {
