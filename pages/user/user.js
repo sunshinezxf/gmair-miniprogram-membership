@@ -45,6 +45,7 @@ Page({
     let setConsumerIdFlag = wx.getStorageSync('setConsumerIdFlag');
     if(setConsumerIdFlag==null||typeof setConsumerIdFlag == "undefined"||setConsumerIdFlag == ""||setConsumerIdFlag==false){
       http.setConsumerId();
+      return;
     }
 
     //加载订单数字

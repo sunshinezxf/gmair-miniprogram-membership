@@ -125,6 +125,7 @@ Page({
       method: "GET",
       data: {},
       callBack: (res) => {
+        console.log("resssss",res)
         this.setData({
           indexImgs: res,
           seq: res

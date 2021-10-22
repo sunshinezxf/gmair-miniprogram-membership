@@ -28,9 +28,9 @@
 	<view class = "remark">
 		<van-field
 			model:value="{{ description }}"
-			label="备注"
+			label="申请描述"
 			type="textarea"
-			placeholder="积分补录备注"
+			placeholder="积分补录申请描述"
 			autosize
 			border="{{ false }}"
 			bind:change="onRemarkChange"

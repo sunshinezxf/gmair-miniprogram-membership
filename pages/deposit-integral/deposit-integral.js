@@ -107,6 +107,20 @@ Page({
       });
       return;
     }
+    if(this.data.description==null||this.data.description.length==0){
+      wx.showToast({
+        title: '申请描述不可为空',
+        icon:"none"
+      });
+      return;
+    }
+    if(this.data.description.length>20){
+      wx.showToast({
+        title: '最多输入20个字',
+        icon:"none"
+      });
+      return;
+    }
 
     var that = this;
     wx.showLoading();
