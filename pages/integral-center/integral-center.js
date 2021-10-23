@@ -6,8 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    getIntegralRecords:[],
-    membershipIntegral:0
+    getIntegralRecords: [],
+    membershipIntegral: 0,
+    active: 0,
+    integralAdds: [],
+    addCurrent: 1,
+    recordCurrent: 1,
+    size: 20,
+    recordPages:0,
+    addPages:0
   },
 
   /**
@@ -15,33 +22,84 @@ Page({
    */
   onLoad: function (options) {
 
-    if(options.membershipIntegral){
+    if (options.membershipIntegral) {
       this.setData({
-        membershipIntegral:options.membershipIntegral
+        membershipIntegral: options.membershipIntegral
       });
     }
     
-    this.getIntegralRecords();
   },
-
-  getIntegralRecords:function(){
-      var that = this;
-      wx.showLoading();
-      var params = {
-        url: "/integral/getIntegralRecords",
-        method: "POST",
-        data: {},
-        callBack: function(res) {
-          wx.hideLoading();
-          console.log("getIntegralRecords",res);
-          that.setData({
-            getIntegralRecords: res
-          });
+  onShow: function () {
+    
+    this.getIntegralRecords();   
+    this.getIntegralAdd();
+  },
+  getIntegralRecords: function () {
+    var that = this;
+    wx.showLoading();
+    var params = {
+      url: "/integral/getIntegralRecords",
+      method: "GET",
+      data: {
+        current: that.data.recordCurrent,
+        size: that.data.size,
+       
+      },
+      callBack: function (res) {
+        wx.hideLoading();
+        console.log("getIntegralRecords", res);
+        let list = []
+        if (res.current == 1) {
+          list = res.records
+        } else {
+          list = that.data.getIntegralRecords
+          list = list.concat(res.records)
         }
-      };
-      http.request(params);
-  },
+        that.setData({
+          getIntegralRecords: list,
+          recordPages:Math.ceil(res.total / that.data.size)
 
+        });
+      }
+    };
+    http.request(params);
+  },
+  getIntegralAdd: function () {
+    var that = this;
+    wx.showLoading();
+    var params = {
+      url: "/integral/getIntegralAdds",
+      method: "GET",
+      data: {
+        current: that.data.addCurrent,
+        size: that.data.size,
+        sortType: "CREATETIME"
+      },
+      callBack: function (res) {
+        wx.hideLoading();
+        console.log("getIntegralAdds", res);
+        let list = []
+        if (res.current == 1) {
+          list = res.records
+        } else {
+          list = that.data.integralAdds
+          list = list.concat(res.records)
+        }
+        that.setData({
+          integralAdds: list,
+          addPages:Math.ceil(res.total / that.data.size)
+        });
+      }
+    };
+    http.request(params);
+  },
+  onTabsChange(event) {
+    this.setData({
+      
+      active:event.detail.index
+    });
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -52,9 +110,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+ 
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -80,17 +136,36 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom: function() {
+      console.log("addpages",this.data.addPages);
+      console.log("recordPages",this.data.recordPages);
+      if(this.data.active==0){
+        if (this.data.recordCurrent < this.data.recordPages) {
+          this.setData({
+            recordCurrent: this.data.recordCurrent + 1
+          })
+          this.getIntegralRecords();
+        }
+        
+      }else{
+        
+        if (this.data.addCurrent < this.data.addPages) {
+          this.setData({
+            addCurrent: this.data.addCurrent + 1
+          })
+          this.getIntegralAdd();
+        }
+      }
+      
+    
   },
-
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
   },
-  toDepositIntegral: function(){
+  toDepositIntegral: function () {
     wx.navigateTo({
       url: '/pages/deposit-integral/deposit-integral'
     })

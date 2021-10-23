@@ -11,7 +11,7 @@
   </view>
   <view class='be-membership' wx-if="{{!membershipFlag}}">
     <text class='show-tip'>加入果麦会员即送100积分，</text>
-    <text class='gotobinding' bindtap='toBeMembership'>立即免费加入</text>
+    <text class='gotobinding' style="color:#3a86b9;" bindtap='toBeMembership'>立即免费加入</text>
   </view>
   <!-- end 用户信息 -->
 

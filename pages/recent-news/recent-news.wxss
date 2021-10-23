@@ -7,6 +7,7 @@
 .recent-news .news-item {
   padding: 20rpx 20rpx 0 20rpx;
   position: relative;
+  margin-top: 50rpx;
 }
 
 .recent-news .news-item::after {
@@ -20,14 +21,14 @@
 }
 
 .recent-news .news-item .news-item-title {
-  font-size: 28rpx;
+  font-size: 30rpx;
   text-align: left;
 }
 
 .recent-news .news-item .news-item-date {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #999;
-  text-align: right;
+  /* text-align: right; */
   margin-top: 10rpx;
   margin-bottom: 20rpx;
 }

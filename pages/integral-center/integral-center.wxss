@@ -68,13 +68,13 @@ page {
 
 .integral-list .integral-list-item .integral-list-item-up .item-desc{
   text-align: left;
-  font-size: 35rpx;
+  font-size: 30rpx;
   
 }
 
 .integral-list .integral-list-item .integral-list-item-up .item-date{
   text-align: left;
-  font-size: 30rpx;
+  font-size: 26rpx;
   color: #999;
 }
 

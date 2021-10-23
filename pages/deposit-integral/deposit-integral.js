@@ -143,15 +143,20 @@ Page({
       },
       callBack: function (res) {
         wx.hideLoading();
-        wx.showToast({
-          title: '提交成功',
-        });
+        
         that.setData({
           fileList: [],
           fileUploadList: [],
           deviceModel:'',
           description:''
         });
+        wx.showToast({
+          title: '提交成功',
+        });
+        
+        wx.navigateBack({
+          delta: 1,
+        })
       }
     };
     http.request(params);

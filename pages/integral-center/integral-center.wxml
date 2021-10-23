@@ -8,37 +8,93 @@
 		<view class='userinfo-integral'>
 			<text>{{membershipIntegral}}</text>
 			<view class='userinfo-button'>
-				<van-button round bind:click='toDepositIntegral'><text style="color:#6495ED;">补录申请</text></van-button>
+				<van-button round bind:click='toDepositIntegral'><text style="color:#6495ED; font-size: 30rpx;">补录申请</text></van-button>
 			</view>
 
 		</view>
 	</view>
 
 	<view class='integral-list'>
-		<view wx:for="{{getIntegralRecords}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
-			<van-divider wx-if="{{idx!=0}}"/>
-			<view class="integral-list-item-up">
-			
-				<view>
-					<view class='item-desc'>
-						<text>{{item.description}}</text>
+		<van-tabs type="line" color="#00BFFF" active="{{ active }}" bind:change="onTabsChange">
+			<van-tab title="积分记录">
+				<view wx:for="{{getIntegralRecords}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
+					<van-divider />
+					<view class="integral-list-item-up">
+
+						<view>
+							<view class='item-desc'>
+								<text>{{item.description}}</text>
+							</view>
+							<view class='item-date'>
+								<text>{{item.createTime}}</text>
+								<!-- <van-tag style="margin-left:10rpx;" type="success" wx:if="{{item.isAdd}}">+</van-tag>
+								<van-tag style="margin-left:10rpx;" type="primary" wx:if="{{!item.isAdd}}">-</van-tag> -->
+							</view>
+						</view>
+
+						<view class='item-num' wx:if="{{item.isAdd}}">
+							<text>+{{item.integralValue}}</text>
+						</view>
+
+						<view class='item-num' wx:if="{{!item.isAdd}}">
+							<text>-{{item.integralValue}}</text>
+						</view>
+
 					</view>
-					<view class='item-date'>
-						<text>{{item.createTime}}</text>
+
+				</view>
+			</van-tab>
+			<van-tab title="申请中">
+				<view wx:for="{{integralAdds}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
+					<view wx-if="{{!item.isConfirmed}}">
+						<van-divider  />
+						<view class="integral-list-item-up">
+							<view>
+								<view class='item-desc'>
+									<text>{{item.description}}</text>
+								</view>
+								<view class='item-date'>
+									<text>{{item.createTime}}</text>
+									<van-tag style="margin-left:10rpx;" type="warning">审核中</van-tag>
+								</view>
+							</view>
+
+							<view class='item-num'>
+								<text>+{{item.integralValue}}</text>
+							</view>
+						</view>
 					</view>
 				</view>
+			</van-tab>
 
-				<view class='item-num' wx:if="{{item.isAdd}}">
-					<text>+{{item.integralValue}}</text>
+			<van-tab title="已发放">
+				<view wx:for="{{integralAdds}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
+					<view wx-if="{{item.isConfirmed}}">
+						<van-divider />
+						<view class="integral-list-item-up">
+
+							<view>
+								<view class='item-desc'>
+									<text>{{item.description}}</text>
+								</view>
+								<view class='item-date'>
+									<text>{{item.createTime}}</text>
+									<van-tag style="margin-left:10rpx;" type="success">已发放</van-tag>
+								</view>
+							</view>
+
+							<view class='item-num'>
+								<text>+{{item.integralValue}}</text>
+							</view>
+
+
+						</view>
+					</view>
+
 				</view>
+			</van-tab>
+		</van-tabs>
 
-				<view class='item-num' wx:if="{{!item.isAdd}}">
-					<text>-{{item.integralValue}}</text>
-				</view>
-				
-			</view>
-
-		</view>
 
 	</view>
 </view>

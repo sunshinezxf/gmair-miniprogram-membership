@@ -3,7 +3,11 @@
     "van-button": "/vant/button/index",
     "van-cell": "/vant/cell/index",
     "van-cell-group": "/vant/cell-group/index",
-    "van-divider": "/vant/divider/index"
+    "van-divider": "/vant/divider/index",
+    "van-tab": "/vant/tab/index",
+    "van-tabs": "/vant/tabs/index",
+    "van-tag": "/vant/tag/index"
+   
   },
   "backgroundTextStyle": "light",
   "navigationBarTitleText": "积分中心",
