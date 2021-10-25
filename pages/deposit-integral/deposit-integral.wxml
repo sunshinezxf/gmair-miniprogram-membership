@@ -40,6 +40,6 @@
 
 
 	<view class="button">	
-			<van-button type="primary" size="large" bind:click="dataSubmit">提交</van-button>
+			<van-button type="info" size="large" bind:click="dataSubmit">提交</van-button>
 	</view>
 </view>

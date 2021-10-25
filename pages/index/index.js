@@ -75,7 +75,7 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: '/pages/deposit-integral/deposit-integral',
+      url: "/pages/integral-center/integral-center",
     })
   },
   //跳转商品活动页面

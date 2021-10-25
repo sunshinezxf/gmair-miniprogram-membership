@@ -12,7 +12,7 @@ Page({
     integralAdds: [],
     addCurrent: 1,
     recordCurrent: 1,
-    size: 20,
+    size: 30,
     recordPages:0,
     addPages:0
   },
@@ -26,8 +26,14 @@ Page({
       this.setData({
         membershipIntegral: options.membershipIntegral
       });
+    }else{
+      this.showMembershipIntegral();
     }
-    
+    if(options.active){
+      this.setData({
+        active: parseInt(options.active)
+      });
+    }
   },
   onShow: function () {
     
@@ -59,6 +65,23 @@ Page({
           getIntegralRecords: list,
           recordPages:Math.ceil(res.total / that.data.size)
 
+        });
+      }
+    };
+    http.request(params);
+  },
+  showMembershipIntegral: function(){
+    var ths = this;
+    console.log("showMembershipIntegral:function");
+    wx.showLoading();
+    var params = {
+      url: "/integral/getIntegral",
+      method: "POST",
+      data: {},
+      callBack: function(res) {
+        wx.hideLoading();
+        ths.setData({
+          membershipIntegral: res
         });
       }
     };
@@ -139,7 +162,7 @@ Page({
   onReachBottom: function() {
       console.log("addpages",this.data.addPages);
       console.log("recordPages",this.data.recordPages);
-      if(this.data.active==0){
+      if(this.data.active==2){
         if (this.data.recordCurrent < this.data.recordPages) {
           this.setData({
             recordCurrent: this.data.recordCurrent + 1

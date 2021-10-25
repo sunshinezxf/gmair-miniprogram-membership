@@ -153,10 +153,17 @@ Page({
         wx.showToast({
           title: '提交成功',
         });
+       
         
-        wx.navigateBack({
-          delta: 1,
-        })
+        // wx.redirectTo({
+        //   url: '/pages/integral-center/integral-center?active='+0
+        // })     
+        setTimeout(function() {
+          wx.navigateBack({
+            delta: 1,
+          })  
+        }, 500);
+        
       }
     };
     http.request(params);

@@ -134,7 +134,7 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: '/pages/deposit-integral/deposit-integral'
+      url: '/pages/integral-center/integral-center?membershipIntegral='+this.data.membershipIntegral
     })
   },
   toMyCouponPage: function() {

@@ -16,34 +16,7 @@
 
 	<view class='integral-list'>
 		<van-tabs type="line" color="#00BFFF" active="{{ active }}" bind:change="onTabsChange">
-			<van-tab title="积分记录">
-				<view wx:for="{{getIntegralRecords}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
-					<van-divider />
-					<view class="integral-list-item-up">
-
-						<view>
-							<view class='item-desc'>
-								<text>{{item.description}}</text>
-							</view>
-							<view class='item-date'>
-								<text>{{item.createTime}}</text>
-								<!-- <van-tag style="margin-left:10rpx;" type="success" wx:if="{{item.isAdd}}">+</van-tag>
-								<van-tag style="margin-left:10rpx;" type="primary" wx:if="{{!item.isAdd}}">-</van-tag> -->
-							</view>
-						</view>
-
-						<view class='item-num' wx:if="{{item.isAdd}}">
-							<text>+{{item.integralValue}}</text>
-						</view>
-
-						<view class='item-num' wx:if="{{!item.isAdd}}">
-							<text>-{{item.integralValue}}</text>
-						</view>
-
-					</view>
-
-				</view>
-			</van-tab>
+			
 			<van-tab title="申请中">
 				<view wx:for="{{integralAdds}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
 					<view wx-if="{{!item.isConfirmed}}">
@@ -59,9 +32,9 @@
 								</view>
 							</view>
 
-							<view class='item-num'>
-								<text>+{{item.integralValue}}</text>
-							</view>
+							<!-- <view class='item-num'>
+								<text>审核中</text>
+							</view> -->
 						</view>
 					</view>
 				</view>
@@ -89,6 +62,34 @@
 
 
 						</view>
+					</view>
+
+				</view>
+			</van-tab>
+			<van-tab title="积分记录">
+				<view wx:for="{{getIntegralRecords}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
+					<van-divider />
+					<view class="integral-list-item-up">
+
+						<view>
+							<view class='item-desc'>
+								<text>{{item.description}}</text>
+							</view>
+							<view class='item-date'>
+								<text>{{item.createTime}}</text>
+								<!-- <van-tag style="margin-left:10rpx;" type="success" wx:if="{{item.isAdd}}">+</van-tag>
+								<van-tag style="margin-left:10rpx;" type="primary" wx:if="{{!item.isAdd}}">-</van-tag> -->
+							</view>
+						</view>
+
+						<view class='item-num' wx:if="{{item.isAdd}}">
+							<text>+{{item.integralValue}}</text>
+						</view>
+
+						<view class='item-num' wx:if="{{!item.isAdd}}">
+							<text>-{{item.integralValue}}</text>
+						</view>
+
 					</view>
 
 				</view>
