@@ -6,15 +6,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    getIntegralRecords: [],
+    
     membershipIntegral: 0,
     active: 0,
-    integralAdds: [],
-    addCurrent: 1,
+    size: 10,
+
+    integralAddsUnconfirmed: [],
+    integralAddsConfirmed:[],
+    getIntegralRecords: [],
+
+    addUnconfirmedCurrent: 1,
+    addConfirmedCurrent: 1,
     recordCurrent: 1,
-    size: 30,
+
+    addUnconfirmedPages:0,
+    addConfirmedPages:0,
     recordPages:0,
-    addPages:0
+    
   },
 
   /**
@@ -38,7 +46,8 @@ Page({
   onShow: function () {
     
     this.getIntegralRecords();   
-    this.getIntegralAdd();
+    this.getIntegralAddUnconfirmed();
+    this.getIntegralAddConfirmed();
   },
   getIntegralRecords: function () {
     var that = this;
@@ -87,30 +96,63 @@ Page({
     };
     http.request(params);
   },
-  getIntegralAdd: function () {
+  getIntegralAddConfirmed: function () {
     var that = this;
     wx.showLoading();
     var params = {
       url: "/integral/getIntegralAdds",
       method: "GET",
       data: {
-        current: that.data.addCurrent,
+        current: that.data.addConfirmedCurrent,
         size: that.data.size,
-        sortType: "CREATETIME"
+        sortType: "CREATETIME",
+        status:2,
+        isConfirmed:true
       },
       callBack: function (res) {
         wx.hideLoading();
-        console.log("getIntegralAdds", res);
+        console.log("getIntegralAddsConfirmed", res);
         let list = []
         if (res.current == 1) {
           list = res.records
         } else {
-          list = that.data.integralAdds
+          list = that.data.integralAddsConfirmed
           list = list.concat(res.records)
         }
         that.setData({
-          integralAdds: list,
-          addPages:Math.ceil(res.total / that.data.size)
+          integralAddsConfirmed: list,
+          addConfirmedPages:Math.ceil(res.total / that.data.size)
+        });
+      }
+    };
+    http.request(params);
+  },
+  getIntegralAddUnconfirmed: function () {
+    var that = this;
+    wx.showLoading();
+    var params = {
+      url: "/integral/getIntegralAdds",
+      method: "GET",
+      data: {
+        current: that.data.addUnconfirmedCurrent,
+        size: that.data.size,
+        sortType: "CREATETIME",
+        status:0,
+        isConfirmed:false
+      },
+      callBack: function (res) {
+        wx.hideLoading();
+        console.log("getIntegralAddsUnconfirmed", res);
+        let list = []
+        if (res.current == 1) {
+          list = res.records
+        } else {
+          list = that.data.integralAddsUnconfirmed
+          list = list.concat(res.records)
+        }
+        that.setData({
+          integralAddsUnconfirmed: list,
+          addUnconfirmedPages:Math.ceil(res.total / that.data.size)
         });
       }
     };
@@ -160,7 +202,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-      console.log("addpages",this.data.addPages);
+      console.log("addUnconfirmedpages",this.data.addUnconfirmedPages);
+      console.log("addConfirmedpages",this.data.addConfirmedPages);
       console.log("recordPages",this.data.recordPages);
       if(this.data.active==2){
         if (this.data.recordCurrent < this.data.recordPages) {
@@ -170,13 +213,19 @@ Page({
           this.getIntegralRecords();
         }
         
-      }else{
-        
-        if (this.data.addCurrent < this.data.addPages) {
+      }else if(this.data.active==0){  
+        if (this.data.addUnconfirmedCurrent < this.data.addUnconfirmedPages) {
           this.setData({
-            addCurrent: this.data.addCurrent + 1
+            addUnconfirmedCurrent: this.data.addUnconfirmedCurrent + 1
           })
-          this.getIntegralAdd();
+          this.getIntegralAddUnconfirmed();
+        }
+      }else if(this.data.active==1){
+        if (this.data.addConfirmedCurrent < this.data.addConfirmedPages) {
+          this.setData({
+            addConfirmedCurrent: this.data.addConfirmedCurrent + 1
+          })
+          this.getIntegralAddConfirmed();
         }
       }
       

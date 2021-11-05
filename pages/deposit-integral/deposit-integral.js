@@ -74,14 +74,19 @@ Page({
       },
     });
   },
-  deletePhone(event) {
+  deletePhoto(event) {
     let index = event.detail.index;
     const {
       fileList = []
     } = this.data;
+    const {
+      fileUploadList = []
+    } = this.data;
     fileList.splice(index, 1);
+    fileUploadList.splice(index,1);
     this.setData({
-      fileList
+      fileList,
+      fileUploadList
     });
   },
   oversize(event) {

@@ -5,7 +5,7 @@
 			<text>请上传待补录商品订单照片（或截图）：</text>
 	</view>
 	<view class = "uploadImage">
-		<van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" deletable="{{ true }}" bind:before-read="beforeRead" bind:delete="deletePhone" max-size="10485760" bind:oversize="oversize" max-count="5"/>
+		<van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" deletable="{{ true }}" bind:before-read="beforeRead" bind:delete="deletePhoto" max-size="10485760" bind:oversize="oversize" max-count="5"/>
 	</view>
 	<view class="divider">
 		<van-divider/>

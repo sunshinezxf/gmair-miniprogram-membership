@@ -18,7 +18,7 @@
 		<van-tabs type="line" color="#00BFFF" active="{{ active }}" bind:change="onTabsChange">
 			
 			<van-tab title="申请中">
-				<view wx:for="{{integralAdds}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
+				<view wx:for="{{integralAddsUnconfirmed}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
 					<view wx-if="{{!item.isConfirmed}}">
 						<van-divider  />
 						<view class="integral-list-item-up">
@@ -41,7 +41,7 @@
 			</van-tab>
 
 			<van-tab title="已发放">
-				<view wx:for="{{integralAdds}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
+				<view wx:for="{{integralAddsConfirmed}}" wx:for-index="idx" wx:for-item="item" class="integral-list-item">
 					<view wx-if="{{item.isConfirmed}}">
 						<van-divider />
 						<view class="integral-list-item-up">
