@@ -25,12 +25,14 @@
 
 		<view class='cat-item'>
 			<view class='item' bindtap='toClassifyPage' data-sts="1">
-				<van-icon name="lock" color="#00BFFF" size="35px"/>
+				<!-- <van-icon name="lock" color="#00BFFF" size="35px"/> -->
+				<van-icon name="shop" color="#00BFFF" size="35px"/>
 				<text>新品推荐</text>
 			</view>
 
 			<view class='item' bindtap='toClassifyPage' data-sts="3">
-				<van-icon name="hot" color="#FF6347" size="35px"/>
+				<van-icon name="goods-collect" color="#FF6347" size="35px"/>
+				<!-- <van-icon name="hot" color="#FF6347" size="35px"/> -->
 				<text>每日疯抢</text>
 			</view>
 
@@ -44,11 +46,12 @@
 			</view>
 
 		</view>
-
+ 
 		<!-- 消息播放 -->
 		<view class='message-play' bindtap='onNewsPage'>
-			<image src='../../images/icon/horn.png' class='hornpng'></image>
-			<!-- <van-icon class='hornpng' name="fire" color="red"/> -->
+			<!-- <image src='../../images/icon/horn.png' class='hornpng'></image> -->
+			<van-icon class='hornpng' custom-class='hornpngCustom' name="hot" color="#FF0000" size="25px"/>
+			
 			<swiper vertical='true' autoplay='true' duration='1000' class='swiper-cont'>
 				<block wx:for='{{news}}' wx:key='id'>
 					<swiper-item class="items">{{item.title}}</swiper-item>
