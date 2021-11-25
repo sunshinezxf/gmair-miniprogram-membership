@@ -18,7 +18,7 @@
   <view class='list-cont'>
 
     <!-- 订单状态 -->
-    <!-- <view class='total-order'>
+    <view class='total-order'>
       <view class='order-tit'>
         <text style='font-weight:bold'>我的订单</text>
         <view class='checkmore' bindtap='toOrderListPage' data-sts="0">
@@ -47,14 +47,14 @@
           <text>已完成</text>
         </view>
       </view>
-    </view> -->
+    </view>
     <!--end 订单状态 -->
 
     <view class="prod-col">
-      <!-- <view class="col-item" bindtap='myCollectionHandle'>
+      <view class="col-item" bindtap='myCollectionHandle'>
         <view class="num">{{collectionCount}}</view>
         <view class="tit">我的收藏</view>
-      </view> -->
+      </view>
       <view class="col-item" bindtap='toIntegralCenter'>
         <view class="num">{{membershipIntegral}}</view>
         <view class="tit">我的积分</view>
@@ -95,13 +95,13 @@
         </view>
         <view class='arrowhead'></view>
       </view> -->
-      <!-- <view class='memu-item' bindtap='toAddressList'>
+      <view class='memu-item' bindtap='toAddressList'>
         <view class="i-name">
           <image src='../../images/icon/myAddr.png'></image>
           <text>收货地址</text>
         </view>
         <view class='arrowhead'></view>
-      </view> -->
+      </view>
     </view>
     <!--end 列表项 -->
   </view>

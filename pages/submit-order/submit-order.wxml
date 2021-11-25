@@ -88,12 +88,12 @@
 		<!-- 订单详情 -->
 		<view class='order-msg'>
 			<view class='msg-item'>
-				<view class='item coupon' bindtap='showCouponPopup'>
+				<!-- <view class='item coupon' bindtap='showCouponPopup'>
 					<text class='item-tit'>优惠券：</text>
 					<text class='item-txt' wx:if="{{!coupons.canUseCoupons}}">暂无可用</text>
 					<text class='coupon-btn'>{{coupons.totalLength? coupons.totalLength: 0}}张</text>
 					<text class='arrow'></text>
-				</view>
+				</view> -->
 				<view class='item'>
 					<text>买家留言：</text>
 					<input value='{{remarks}}' placeholder='给卖家留言' bindinput="onRemarksInput"></input>
@@ -123,14 +123,14 @@
 						<text class='small-num'>.{{wxs.parsePrice(transfee)[1]}}</text>
 					</view>
 				</view>
-				<view class='item'>
+				<!-- <view class='item'>
 					<view class='item-tit'>优惠金额：</view>
 					<view class='item-txt price'>
 						<text class='symbol'>-￥</text>
 						<text class='big-num'>{{wxs.parsePrice(shopReduce)[0]}}</text>
 						<text class='small-num'>.{{wxs.parsePrice(shopReduce)[1]}}</text>
 					</view>
-				</view>
+				</view> -->
 				<view class='item payment'>
 					<view class='item-txt price'>
 						小计：
@@ -169,7 +169,7 @@
 </view>
 
 <!-- 选择优惠券弹窗 -->
-<view class="popup-hide" wx:if="{{popupShow}}">
+<!-- <view class="popup-hide" wx:if="{{popupShow}}">
 	<view class="popup-box">
 		<view class="popup-tit">
 			<text>优惠券</text>
@@ -192,6 +192,6 @@
 			<text bindtap='choosedCoupon'>确定</text>
 		</view>
 	</view>
-</view>
+</view> -->
 
 <wxs module="wxs" src="../../wxs/number.wxs" />

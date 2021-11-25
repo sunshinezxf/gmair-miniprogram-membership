@@ -1,13 +1,13 @@
 <!--index.wxml-->
 <view class="container">
-	<!-- <view class='bg-sear'>
+	<view class='bg-sear'>
 		<view class="scrolltop">
 			<view class='section' bindtap='toSearchPage'>
 				<image src='../../images/icon/search.png' class='search-img'></image>
 				<text class='placeholder'>搜索</text>
 			</view>
 		</view>
-	</view> -->
+	</view>
 
 	<view class='content'>
 		<!-- swiper -->
@@ -15,8 +15,8 @@
 			<block wx:for='{{indexImgs}}' wx:key='imgUrl'>
 				<swiper-item class="banner-item">
 					<view class='img-box'>
-						<!-- <image src='{{item.imgUrl}}' data-prodid='{{item.relation}}' bindtap='toProdPage' class='banner'></image> -->
-						<image src='{{item.imgUrl}}' data-prodid='{{item.relation}}' class='banner'></image>
+						<image src='{{item.imgUrl}}' data-prodid='{{item.relation}}' bindtap='toProdPage' class='banner'></image>
+						<!-- <image src='{{item.imgUrl}}' data-prodid='{{item.relation}}' class='banner'></image> -->
 					</view>
 				</swiper-item>
 			</block>
@@ -24,24 +24,18 @@
 		<!-- end swiper -->
 
 		<view class='cat-item'>
-			<!-- <view class='item' bindtap='toClassifyPage' data-sts="1">
-				<image src='../../images/icon/newProd.png'></image>
+			<view class='item' bindtap='toClassifyPage' data-sts="1">
+				<van-icon name="lock" color="#00BFFF" size="35px"/>
 				<text>新品推荐</text>
 			</view>
-			<view class='item' bindtap='toClassifyPage' data-sts="2">
-				<image src='../../images/icon/timePrice.png'></image>
-				<text>限时特惠</text>
-			</view>
+
 			<view class='item' bindtap='toClassifyPage' data-sts="3">
-				<image src='../../images/icon/neweveryday.png'></image>
+				<van-icon name="hot" color="#FF6347" size="35px"/>
 				<text>每日疯抢</text>
 			</view>
-			<view class='item' bindtap='toCouponCenter'>
-				<image src='../../images/icon/newprods.png'></image>
-				<text>领优惠券</text>
-			</view> -->
+
 			<view class='item' bindtap='toIntegral'>
-				<van-icon name="diamond" color="#A9A9A9" size="35px"/>
+				<van-icon name="diamond" color="#90EE90" size="35px"/>
 				<text>积分补录</text>
 			</view>
 			<view class='item' bindtap='toMembership'>
@@ -67,7 +61,7 @@
 
 	<block wx:for="{{taglist}}" wx:key="id">
 		<!-- 每日上新 -->
-		<!-- <view class='up-to-date' wx:if="{{item.style==2}}">
+		<view class='up-to-date' wx:if="{{item.style==2}}">
 			<view class='title'>
 				<text>{{item.title}}</text>
 				<view class='more-prod-cont' bindtap='toClassifyPage' data-sts="0" data-id="{{item.id}}" data-title="{{item.title}}">
@@ -96,10 +90,10 @@
 				</block>
 
 			</view>
-		</view> -->
+		</view>
 
 		<!-- 商城热卖 -->
-		<!-- <view class='hot-sale' wx:if="{{item.style==1}}">
+		<view class='hot-sale' wx:if="{{item.style==1}}">
 			<view class='title'>
 				<text>{{item.title}}</text>
 				<view class='more-prod-cont' bindtap='toClassifyPage' data-sts="0" data-id="{{item.id}}" data-title="{{item.title}}">
@@ -132,10 +126,10 @@
 					</view>
 				</block>
 			</view>
-		</view> -->
+		</view>
 
 		<!-- 更多宝贝 -->
-		<!-- <view class='more-prod' wx:if="{{item.style==0}}">
+		<view class='more-prod' wx:if="{{item.style==0}}">
 			<view class='title'>{{item.title}}</view>
 			<view class='prod-show'>
 				<block wx:for="{{item.prods}}" wx:for-item="prod" wx:key="prodId">
@@ -162,7 +156,7 @@
 					</view>
 				</block>
 			</view>
-		</view> -->
+		</view>
 	</block>
 </view>
 <wxs module="wxs" src="../../wxs/number.wxs" />

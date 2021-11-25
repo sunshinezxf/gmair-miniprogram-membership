@@ -43,10 +43,10 @@
 							<text class='symbol' wx:if="{{item.isNeedIntegral}}"> 积分</text>
 							</text>
 
-							<view class='btn-box'>
+							<!-- <view class='btn-box'>
 								<text class='btn' wx:if="{{item.status!=1}}">申请售后</text>
 								<text class='btn'>加购物车</text>
-							</view>
+							</view> -->
 						</view>
 					</view>
 				</view>
@@ -135,14 +135,14 @@
 						<text class='small-num'>.{{wxs.parsePrice(transfee)[1]}}</text>
 					</view>
 				</view>
-				<view class='item'>
+				<!-- <view class='item'>
 					<view class='item-tit'>优惠券：</view>
 					<view class='item-txt price'>
 						<text class='symbol'>-￥</text>
 						<text class='big-num'>{{wxs.parsePrice(reduceAmount)[0]}}</text>
 						<text class='small-num'>.{{wxs.parsePrice(reduceAmount)[1]}}</text>
 					</view>
-				</view>
+				</view> -->
 				<view class='item payment'>
 					<view class='item-txt price'>
 						实付款：
@@ -161,8 +161,8 @@
 		<view class='order-detail-footer'>
 			<text class='dele-order' wx:if="{{status==5||status==6}}">删除订单</text>
 			<view class='footer-box'>
-				<text class='apply-service'>联系客服</text>
-				<text class='buy-again'>再次购买</text>
+				<!-- <text class='apply-service'>联系客服</text> -->
+				<text class='buy-again' wx:if="{{status==1}}" bindtap="onPayAgain" > 付  款 </text>
 			</view>
 		</view>
 

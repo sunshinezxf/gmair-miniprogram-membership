@@ -177,9 +177,11 @@ Page({
    * 付款
    */
   onPayAgain: function(e) {
+    let orderNum = e.currentTarget.dataset.ordernum;
     wx.showLoading({
       mask: true
     });
+    console.log("调用现金支付接口");
     var params = {
       url: "/order/pay",
       method: "POST",
@@ -188,23 +190,33 @@ Page({
         orderNumbers: e.currentTarget.dataset.ordernum
       },
       callBack: res => {
-        //console.log(res);
+        console.log("支付结果的res: ",res);
+        if(res.responseCode!="RESPONSE_OK"){
+          wx.showToast({
+            title: res.description,
+            icon:'none',
+            duration:2000
+          })
+          return;
+        }
         wx.hideLoading();
         wx.requestPayment({
-          timeStamp: res.timeStamp,
-          nonceStr: res.nonceStr,
-          package: res.packageValue,
-          signType: res.signType,
-          paySign: res.paySign,
-          success: function() {
-            console.log("支付成功");
+          timeStamp: res.data.timeStamp,
+          nonceStr: res.data.nonceStr,
+          package: res.data.package,
+          paySign: res.data.paySign,
+          signType:res.data.signType,
+          success: e => {
+            console.log("支付成功",e);
             wx.navigateTo({
-              url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + e.currentTarget.dataset.ordernum,
+              url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + orderNum ,
             })
           },
-          fail: function(err) {
-            console.log("支付失败");
-           
+          fail: err => {
+            console.log("支付失败",err);
+            wx.navigateTo({
+              url: '/pages/pay-result/pay-result?sts=0&orderNumbers=' + orderNum ,
+            })
           }
         })
 

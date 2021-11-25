@@ -152,6 +152,7 @@ Page({
 
 
   submitOrder: function () {
+    let that = this;
     wx.showLoading({
       mask: true
     });
@@ -166,19 +167,65 @@ Page({
       },
       callBack: res => {
         wx.hideLoading();
-        this.calWeixinPay(res.orderNumbers);
+        // console.log("submitOrder: ",res);
+        if(that.data.isNeedCashOfAll==false){
+          that.calIntegralPay(res.orderNumbers);
+        }else{
+          that.calWeixinPay(res.orderNumbers);
+        }
+        
+      }
+    };
+    http.request(params);
+  },
+
+  calIntegralPay: function (orderNumbers) {
+    let that = this;
+    wx.showLoading({
+      mask: true
+    });
+    console.log("调用积分支付接口");
+    var params = {
+      url: "/order/integral/pay",
+      method: "POST",
+      data: {
+        payType: 3,
+        orderNumbers: orderNumbers
+      },
+      callBack: function (res) {
+        console.log("纯积分支付结果的res: ",res);
+        wx.hideLoading();
+        if(res.responseCode=="RESPONSE_OK"){
+          wx.navigateTo({
+            url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + orderNumbers + "&orderType=" + this.data.orderType,
+          })
+
+        }else{
+          wx.showToast({
+            title: res.description,
+            icon:'none',
+            duration:2000
+          });
+          setTimeout(function() {
+            wx.navigateTo({
+              url: '/pages/pay-result/pay-result?sts=0&orderNumbers=' + orderNumbers + "&orderType=" + that.data.orderType,
+            })
+          }, 2000);
+          
+        }
       }
     };
     http.request(params);
   },
 
   /**
-   * 唤起微信支付
+   * 唤起微信支付(积分+现金, 纯现金)
    */
   calWeixinPay: function (orderNumbers) {
     wx.showLoading({
       mask: true
     });
+    console.log("调用现金支付接口");
     var params = {
       url: "/order/pay",
       method: "POST",
@@ -187,20 +234,30 @@ Page({
         orderNumbers: orderNumbers
       },
       callBack: function (res) {
+        console.log("支付结果的res: ",res);
+        if(res.responseCode!="RESPONSE_OK"){
+          wx.showToast({
+            title: res.description,
+            icon:'none',
+            duration:2000
+          })
+          return;
+        }
         wx.hideLoading();
         wx.requestPayment({
-          timeStamp: res.timeStamp,
-          nonceStr: res.nonceStr,
-          package: res.packageValue,
-          signType: res.signType,
-          paySign: res.paySign,
+          timeStamp: res.data.timeStamp,
+          nonceStr: res.data.nonceStr,
+          package: res.data.package,
+          paySign: res.data.paySign,
+          signType:res.data.signType,
           success: e => {
-            // console.log("支付成功");
+            console.log("支付成功",e);
             wx.navigateTo({
               url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + orderNumbers + "&orderType=" + this.data.orderType,
             })
           },
           fail: err => {
+            console.log("支付失败",err);
             wx.navigateTo({
               url: '/pages/pay-result/pay-result?sts=0&orderNumbers=' + orderNumbers + "&orderType=" + this.data.orderType,
             })
