@@ -50,7 +50,7 @@
 		<!-- 消息播放 -->
 		<view class='message-play' bindtap='onNewsPage'>
 			<!-- <image src='../../images/icon/horn.png' class='hornpng'></image> -->
-			<van-icon class='hornpng' custom-class='hornpngCustom' name="hot" color="#FF0000" size="25px"/>
+			<van-icon class='hornpng' name="hot" color="#FF0000" size="25px"/>
 			
 			<swiper vertical='true' autoplay='true' duration='1000' class='swiper-cont'>
 				<block wx:for='{{news}}' wx:key='id'>
